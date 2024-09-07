@@ -5,6 +5,8 @@
     <class>br.edu.ifsp.pep.modelo.Veiculo</class>
     <class>br.edu.ifsp.pep.modelo.Pessoa</class>
     <class>br.edu.ifsp.pep.modelo.Revisao</class>
+    <class>br.edu.ifsp.pep.modelo.PessoaFisica</class>
+    <class>br.edu.ifsp.pep.modelo.PessoaJuridica</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mecanica?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;createDatabaseIfNotExist=true"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
