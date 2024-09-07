@@ -8,11 +8,16 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "conta")
 @Inheritance(strategy = InheritanceType.JOINED)
+@NamedQueries (value = {
+    @NamedQuery(name = "Conta.buscarSaldoZeroOuMenor", query = "FROM Conta c WHERE c.saldo <= 0")
+})
 public class Conta implements Serializable {
     
     @EmbeddedId

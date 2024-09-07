@@ -8,32 +8,32 @@ import javax.persistence.Embeddable;
 public class ContaId implements Serializable {
     
     @Column(name = "numero", nullable = false)
-    private int numero;
+    private String numero;
     
     @Column(name = "agencia", nullable = false)
-    private int agencia;
+    private String agencia;
 
     public ContaId() {
     }
 
-    public ContaId(int numero, int agencia) {
+    public ContaId(String numero, String agencia) {
         this.numero = numero;
         this.agencia = agencia;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
-    public int getAgencia() {
+    public String getAgencia() {
         return agencia;
     }
 
-    public void setAgencia(int agencia) {
+    public void setAgencia(String agencia) {
         this.agencia = agencia;
     }
 }
