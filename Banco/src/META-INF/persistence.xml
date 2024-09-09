@@ -4,9 +4,9 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>br.edu.ifsp.pep.Modelo.Cliente</class>
     <class>br.edu.ifsp.pep.Modelo.Conta</class>
+    <class>br.edu.ifsp.pep.Modelo.ContaCorrente</class>
     <class>br.edu.ifsp.pep.Modelo.ContaEspecial</class>
     <class>br.edu.ifsp.pep.Modelo.ContaPoupanca</class>
-    <class>br.edu.ifsp.pep.Modelo.ContaCorrente</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/Banco?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;createDatabaseIfNotExist=true&amp;serverTimezone=UTC&amp;serverTimezone=America/Sao_Paulo"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

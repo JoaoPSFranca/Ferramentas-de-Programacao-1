@@ -6,11 +6,15 @@ import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.PrimaryKeyJoinColumns;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "conta_poupanca")
-@PrimaryKeyJoinColumn(name = "codigo_conta")
+@PrimaryKeyJoinColumns(value = {
+    @PrimaryKeyJoinColumn(name = "numero", referencedColumnName = "numero"),
+    @PrimaryKeyJoinColumn(name = "agencia", referencedColumnName = "agencia")
+})
 @DiscriminatorValue(value = "CONTA_POUPANCA")
 @NamedQueries(value = {
     @NamedQuery(name = "ContaPoupanca.buscarPeloAniversario", query = "FROM ContaPoupanca cp WHERE cp.aniversario = :aniversario")

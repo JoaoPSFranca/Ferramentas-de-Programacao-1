@@ -2,6 +2,8 @@ package br.edu.ifsp.pep.Modelo;
 
 import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
@@ -18,6 +20,7 @@ import javax.persistence.Table;
 @NamedQueries (value = {
     @NamedQuery(name = "Conta.buscarSaldoZeroOuMenor", query = "FROM Conta c WHERE c.saldo <= 0")
 })
+@DiscriminatorColumn(name = "Type", discriminatorType = DiscriminatorType.STRING)
 public class Conta implements Serializable {
     
     @EmbeddedId

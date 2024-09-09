@@ -6,11 +6,15 @@ import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.PrimaryKeyJoinColumns;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "conta_especial")
-@PrimaryKeyJoinColumn(name = "codigo_conta")
+@PrimaryKeyJoinColumns(value = {
+    @PrimaryKeyJoinColumn(name = "numero", referencedColumnName = "numero"),
+    @PrimaryKeyJoinColumn(name = "agencia", referencedColumnName = "agencia")
+})
 @DiscriminatorValue(value = "CONTA_ESPECIAL")
 @NamedQueries(value = {
     @NamedQuery(name = "ContaEspecial.buscarContasNoVermelho", query = "FROM ContaEspecial ce WHERE ce.saldo <= 0"),

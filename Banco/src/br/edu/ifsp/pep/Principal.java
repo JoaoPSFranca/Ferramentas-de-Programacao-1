@@ -38,7 +38,7 @@ public class Principal {
         
         buscarSaldosVermelhos();
         buscarContaEspecialNegativa();
-        buscarSaldosVermelhos();
+        buscarPeloAniversario(15);
         somarSaldoContaCorrente();
         maiorSaldoContaEspecial();
     }
