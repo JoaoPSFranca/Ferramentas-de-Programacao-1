@@ -54,6 +54,7 @@ public class PessoaController implements Serializable {
 
     public String adicionar() {
         System.out.println("Método adicionar");
+        System.out.println(pessoa.getNivelAcesso());
 
         //Insere no BD
         pessoaDAO.inserir(pessoa);

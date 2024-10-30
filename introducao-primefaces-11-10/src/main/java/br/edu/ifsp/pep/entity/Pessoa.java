@@ -2,6 +2,8 @@ package br.edu.ifsp.pep.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
@@ -27,8 +29,12 @@ public class Pessoa implements Serializable {
     private String login;
     
     @Column(name = "senha", length = 50, nullable = false)
-    private String senha;
-
+    private String senha;   
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name = "nivel_acesso", nullable = false, length = 14)
+    private NivelAcesso nivelAcesso;
+    
     public Integer getCodigo() {
         return codigo;
     }
@@ -60,5 +66,12 @@ public class Pessoa implements Serializable {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-     
+
+    public NivelAcesso getNivelAcesso() {
+        return nivelAcesso;
+    }
+
+    public void setNivelAcesso(NivelAcesso nivelAcesso) {
+        this.nivelAcesso = nivelAcesso;
+    }
 }

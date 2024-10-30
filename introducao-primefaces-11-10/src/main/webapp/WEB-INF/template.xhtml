@@ -29,6 +29,11 @@
                                     outcome="/veiculo/ListVeiculo" />
 
                         <f:facet name="end">
+                            <h:outputLabel 
+                                value="#{loginController.pessoaAutenticada.nome}"
+                                style="color: red; margin-right: 10px;">
+                                
+                            </h:outputLabel>
                             <p:button value="Login" icon="pi pi-fw pi-sign-in" 
                                       styleClass="ui-button-info"
                                       outcome="/login/login" />

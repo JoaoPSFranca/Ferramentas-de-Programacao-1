@@ -2,6 +2,7 @@ package br.edu.ifsp.pep.controller;
 
 import br.edu.ifsp.pep.dao.PessoaDAO;
 import br.edu.ifsp.pep.entity.Pessoa;
+import br.edu.ifsp.pep.util.Mensagem;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -20,6 +21,11 @@ public class LoginController implements Serializable {
     
     public void autenticar (){
         this.pessoaAutenticada = pessoaDAO.autenticar(pessoa.getLogin(), pessoa.getSenha());
+        
+        if (this.pessoaAutenticada != null)
+            Mensagem.sucesso("Pessoa Autentificada.");
+        else
+            Mensagem.erro("Login e/ou senha incorretos. ");
     }
 
     public PessoaDAO getPessoaDAO() {

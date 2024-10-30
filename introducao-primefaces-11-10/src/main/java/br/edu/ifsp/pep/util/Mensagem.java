@@ -12,7 +12,6 @@ import jakarta.faces.context.FacesContext;
  * @author aluno
  */
 public class Mensagem {
-
     public static void sucesso(String mensagem) {
         FacesContext.getCurrentInstance().
                 addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", mensagem));

@@ -10,26 +10,38 @@
     <ui:define name="content">
 
         <h:form>
-
+            <p:growl id="growl" showDetail="true" />
+            <br/>
             <span class="ui-float-label">
                 <p:inputText id="codigo" value="#{pessoaController.pessoa.codigo}" />
                 <p:outputLabel for="@previous" value="Código"/>
             </span>
+            <br/>
             <br/>
             <span class="ui-float-label">
                 <p:inputText id="nome" value="#{pessoaController.pessoa.nome}" />
                 <p:outputLabel for="@previous" value="Nome"/>
             </span>
             <br/>
+            <br/>
             <span class="ui-float-label">
                 <p:inputText id="login" value="#{pessoaController.pessoa.login}" />
                 <p:outputLabel for="@previous" value="Login"/>
             </span>
             <br/>
+            <br/>
             <span class="ui-float-label">
                 <p:inputText id="senha" value="#{pessoaController.pessoa.senha}" />
                 <p:outputLabel for="@previous" value="Senha"/>
             </span>
+            <br/>
+            <br/>
+            <span class="ui-float-label">
+                <p:inputText id="nivelAcesso" value="#{pessoController.pessoa.nivelAcesso}" />
+                <p:outputLabel for="@previous" value="nivelAcesso"/>
+            </span>
+            <br/>
+            <br/>
 
             <!-- Expression Language - EL # {} -->
             <p:commandButton value="Veículo" action="/veiculo/ListVeiculo" />
