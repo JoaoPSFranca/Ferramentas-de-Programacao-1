@@ -22,7 +22,18 @@
                     <p:inputText id="ano" value="#{veiculoController.veiculo.ano}"/>
                 </div>
             </div>
-            <p:commandButton value="Adicionar" update="tabela growl" action="#{veiculoController.adicionar()}" />
+            <div class="field grid">
+                <label for="firstname3" class="col-fixed" style="width:100px">Tipo</label>
+                <div class="col">
+                    <p:selectOneMenu value="#{veiculoController.veiculo.tipoVeiculo}">
+                        <f:selectItems value="#{tipoVeiculoController.buscarTiposVeiculos()}"
+                                       var="item" itemLabel="#{item.nome}"
+                                       itemValue="#{item}"/>
+                    </p:selectOneMenu>
+                </div>
+            </div>
+            
+            <p:commandButton value="Cadastrar" update="growl" action="#{veiculoController.adicionar()}" />
         </h:form>
     </ui:define>
 

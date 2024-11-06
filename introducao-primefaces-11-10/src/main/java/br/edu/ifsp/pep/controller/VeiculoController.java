@@ -4,7 +4,6 @@ import br.edu.ifsp.pep.dao.VeiculoDAO;
 import br.edu.ifsp.pep.entity.StatusVeiculo;
 import br.edu.ifsp.pep.entity.Veiculo;
 import br.edu.ifsp.pep.util.Mensagem;
-import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -12,7 +11,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Named //ManageBean
-@SessionScoped //Escopo do tipo session
+@ViewScoped //Escopo do tipo View
 public class VeiculoController implements Serializable {
 
     @Inject
@@ -43,6 +42,9 @@ public class VeiculoController implements Serializable {
     }
 
     public void adicionar() {
+        
+        System.out.println("Método adicionar Veículo");
+        System.out.println(veiculo);
         
         //Insere no BD
         veiculoDAO.inserir(veiculo);

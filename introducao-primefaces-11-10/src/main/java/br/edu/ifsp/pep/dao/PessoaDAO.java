@@ -14,17 +14,15 @@ public class PessoaDAO extends AbstractDAO<Pessoa> {
                 .getResultList();
     }
 
-    public Pessoa autenticar(String login, String senha){
-        
+    public Pessoa autenticar(String login, String senha) {
         TypedQuery<Pessoa> query = em.createNamedQuery("Pessoa.autenticar", Pessoa.class);
         query.setParameter("login", login);
         query.setParameter("senha", senha);
-        
         try {
-            System.out.println("Autenticado");
             return query.getSingleResult();
         } catch (NoResultException e) {
             return null;
         }
     }
+
 }

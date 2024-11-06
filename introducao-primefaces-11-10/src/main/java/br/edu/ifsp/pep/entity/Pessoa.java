@@ -4,6 +4,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
@@ -14,27 +16,28 @@ import java.io.Serializable;
 @Table(name = "pessoa")
 @NamedQueries({
     @NamedQuery(name = "Pessoa.buscarTodas", query = "FROM Pessoa p"),
-    @NamedQuery(name = "Pessoa.autenticar", query = "SELECT p FROM Pessoa p WHERE p.login = :login AND p.senha = :senha")
+    @NamedQuery(name = "Pessoa.autenticar", query = "FROM Pessoa p WHERE p.login = :login AND p.senha = :senha")
 })
 public class Pessoa implements Serializable {
-    
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo")
     private Integer codigo;
-    
+
     @Column(name = "nome", length = 50, nullable = false)
     private String nome;
-    
-    @Column(name = "login", length = 50, nullable = false)
+
+    @Column(name = "login", length = 15, nullable = false)
     private String login;
-    
-    @Column(name = "senha", length = 50, nullable = false)
-    private String senha;   
-    
+
+    @Column(name = "senha", length = 15, nullable = false)
+    private String senha;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "nivel_acesso", nullable = false, length = 14)
     private NivelAcesso nivelAcesso;
-    
+
     public Integer getCodigo() {
         return codigo;
     }
@@ -74,4 +77,10 @@ public class Pessoa implements Serializable {
     public void setNivelAcesso(NivelAcesso nivelAcesso) {
         this.nivelAcesso = nivelAcesso;
     }
+
+    @Override
+    public String toString() {
+        return "Pessoa{" + "codigo=" + codigo + ", nome=" + nome + ", login=" + login + ", senha=" + senha + '}';
+    }
+
 }

@@ -3,8 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="primefaces"
-      xmlns:f="jakarta.faces.core">
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -15,40 +15,59 @@
     </h:head>
 
     <h:body>
-        <p:growl id="growl"/>
-
+        <p:growl id="growl" showDetail="true" showSummary="true"/>
         <div id="top">
             <ui:insert name="top">
                 <h:form>
                     <p:menubar>
                         <p:menuitem value="Home" icon="pi pi-fw pi-home"
                                     outcome="/index" />
+                        <p:submenu label="Financeiro" icon="pi pi-money-bill">
+                            <p:menuitem value="Listagem" icon="pi pi-list"
+                                        outcome="/financeiro/List"/>
+                            <p:menuitem value="Cadastro" icon="pi pi-plus-circle"
+                                        outcome="/financeiro/Create"/>
+                        </p:submenu>
+                        <p:menuitem value="Comum" icon="pi pi-address-book" 
+                                    outcome="/comum" />
                         <p:menuitem value="Pessoa" icon="pi pi-fw pi-user"
-                                    outcome="/pessoa/ListPessoa" />
+                                    outcome="/pessoa/ListPessoa"
+                                    rendered="#{pessoaController.exibirItemMenu()}" />
                         <p:menuitem value="Veículo" icon="pi pi-fw pi-car"
-                                    outcome="/veiculo/ListVeiculo" />
-
+                                    outcome="/veiculo/ListVeiculo"
+                                    rendered="true" />
+                        
                         <f:facet name="end">
-                            <h:outputLabel 
-                                value="#{loginController.pessoaAutenticada.nome}"
-                                style="color: red; margin-right: 10px;">
-                                
-                            </h:outputLabel>
-                            <p:button value="Login" icon="pi pi-fw pi-sign-in" 
-                                      styleClass="ui-button-info"
-                                      outcome="/login/login" />
+                            <p:commandButton value="Cadastro" 
+                                             icon="pi pi-fw pi-user-plus" 
+                                             action="/pessoa/Cadastro" 
+                                             style="margin-right: 10px;"/>
+                        </f:facet>
+                        
+                        <f:facet name="end">
+                            <p:commandButton value="Login" 
+                                             icon="pi pi-fw pi-sign-in" 
+                                             action="/pessoa/Login" />
                         </f:facet>
                     </p:menubar>
                 </h:form>
             </ui:insert>
         </div>
 
-        <div id="content">
+        <div id="content" style="height: 70vh;">
             <ui:insert name="content">Content</ui:insert>
         </div>
 
         <div id="bottom">
-            <ui:insert name="bottom">Bottom</ui:insert>
+            <ui:insert name="bottom">
+                <div style="text-align: center; font-size: 0.75rem;">
+                    <p>Instituto Federal de Educação, Ciência e Tecnologia de São Paulo - Campus Presidente Epitácio</p>
+
+                    <p>Rua José Ramos Junior, 27-50 - Jardim Tropical - Presidente Epitácio - SP - Brasil - Cep: 19477-170</p>
+
+                    <p>Fone/Fax: (18) 3281-9599/3281-9592. E-mail: pep@ifsp.edu.br</p>     
+                </div>
+            </ui:insert>
         </div>
 
     </h:body>

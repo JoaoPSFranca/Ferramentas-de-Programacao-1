@@ -3,7 +3,6 @@ package br.edu.ifsp.pep.controller;
 import br.edu.ifsp.pep.dao.PessoaDAO;
 import br.edu.ifsp.pep.entity.Pessoa;
 import br.edu.ifsp.pep.util.Mensagem;
-import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -12,8 +11,8 @@ import java.util.List;
 
 @Named //ManageBean
 //@RequestScoped //Escopo do tipo Request
-//@ViewScoped //Escopo do tipo View
-@SessionScoped //Escopo do tipo session (para cada cliente)
+@ViewScoped //Escopo do tipo View
+//@SessionScoped //Escopo do tipo session (para cada cliente)
 //@ApplicationScoped //Escopo único para a aplicação
 public class PessoaController implements Serializable {
 
@@ -52,9 +51,8 @@ public class PessoaController implements Serializable {
         }
     }
 
-    public String adicionar() {
+    public void adicionar() {
         System.out.println("Método adicionar");
-        System.out.println(pessoa.getNivelAcesso());
 
         //Insere no BD
         pessoaDAO.inserir(pessoa);
@@ -67,7 +65,6 @@ public class PessoaController implements Serializable {
         
         Mensagem.sucesso("Pessoa cadastrada.");
         
-        return null;
     }
 
     public Pessoa getPessoa() {
@@ -92,6 +89,10 @@ public class PessoaController implements Serializable {
             pessoas = pessoaDAO.buscarTodas();
         }
         return pessoas;
+    }
+    
+    public boolean exibirItemMenu() {
+        return true;
     }
 
 }
