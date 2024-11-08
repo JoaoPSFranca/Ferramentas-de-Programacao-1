@@ -29,11 +29,11 @@ public class LoginController implements Serializable {
         this.pessoaAutenticada = pessoaDAO.autenticar(pessoa.getLogin().toLowerCase(), pessoa.getSenha());
         
         if (this.pessoaAutenticada != null) {
-            Mensagem.sucesso("Logado com Sucesso!!");
+            Mensagem.sucesso("Logado com Sucesso!");
             return "/index.xhtml";
         }
         else{
-            Mensagem.erro("Login ou Senha inválidos!!!!");
+            Mensagem.erro("Login ou Senha inválidos!");
             return null;
         }
     }
