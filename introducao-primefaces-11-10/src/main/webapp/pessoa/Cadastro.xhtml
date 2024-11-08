@@ -10,32 +10,33 @@
     <ui:define name="content">
 
         <h:form>
-
+            <p:growl id="PessoaCadastroGrowl" showDetail="true"/>
+            
             <div class="ui-fluid formgrid grid">
                 <div class="field col-12 md:col-3">
                     <p:outputLabel for="@next" value="Nome"/>
-                    <p:inputText id="nome" value="#{pessoaController.pessoa.nome}" 
+                    <p:inputText id="PessoaCadastroNome" value="#{pessoaController.pessoa.nome}" 
                                  required="true"/>
                 </div>
                 <div class="field col-12 md:col-9"/> 
                 
                 <div class="field col-12 md:col-3">
                     <p:outputLabel for="@next" value="Login"/>
-                    <p:inputText id="login" value="#{pessoaController.pessoa.login}"
+                    <p:inputText id="PessoaCadastroLogin" value="#{pessoaController.pessoa.login}"
                                  required="true"/>
                 </div>
                 <div class="field col-12 md:col-9"/> 
                 
                 <div class="field col-12 md:col-3">
                     <p:outputLabel for="@next" value="Senha"/>
-                    <p:password id="senha" value="#{pessoaController.pessoa.senha}" 
+                    <p:password id="PessoaCadastroSenha" value="#{pessoaController.pessoa.senha}" 
                                 required="true"/>
                 </div>
                 <div class="field col-12 md:col-9"/> 
                 
                 <div class="field col-12 md:col-3">
                     <p:outputLabel for="@next" value="Nível Acesso"/>
-                    <p:selectOneMenu id="nivel" value="#{pessoaController.pessoa.nivelAcesso}"
+                    <p:selectOneMenu id="PessoaCadastroNivel" value="#{pessoaController.pessoa.nivelAcesso}"
                                      required="true">
                         <f:selectItem itemLabel="Selecione" itemValue=""/>
                         <f:selectItem itemLabel="Comum" itemValue="Comum"/>
@@ -45,9 +46,11 @@
                 </div>
             </div>
 
-            <!-- Expression Language - EL # {} -->
-            <p:commandButton value="Cadastrar" action="#{pessoaController.adicionar()}" style="margin-right: 10px"/>
-            <p:commandButton value="Cancelar" action="#{pessoaController.exibir()}" />
+            <p:commandButton value="Cadastrar" 
+                             update="@all growl"
+                             action="#{pessoaController.cadastro()}" 
+                             style="margin-right: 10px"/>
+            <p:commandButton value="Cancelar" action="/index.xhtml" />
         </h:form>
     </ui:define>
 

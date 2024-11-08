@@ -1,6 +1,7 @@
 package br.edu.ifsp.pep.controller;
 
 import br.edu.ifsp.pep.dao.PessoaDAO;
+import br.edu.ifsp.pep.entity.NivelAcesso;
 import br.edu.ifsp.pep.entity.Pessoa;
 import br.edu.ifsp.pep.util.Mensagem;
 import jakarta.faces.view.ViewScoped;
@@ -18,13 +19,16 @@ public class PessoaController implements Serializable {
 
     @Inject
     private PessoaDAO pessoaDAO;
-
+    
+    @Inject
+    private LoginController lg;
+    
     private Pessoa pessoa = new Pessoa();
     private Pessoa pessoaSelecionada;
     private List<Pessoa> pessoas;
+    private List<Pessoa> pessoasFinanceiro;
 
     public PessoaController() {
-        System.out.println("Construtor Pessoa Controller.");
     }
 
     public void exibir() {
@@ -39,32 +43,59 @@ public class PessoaController implements Serializable {
 //        }
     }
 
-    public void remover() {
+    public String remover() {
         if (pessoaSelecionada != null) {
-            System.out.println("Removendo pessoa selecionada.");
             pessoaDAO.excluir(pessoaSelecionada);
             pessoas = null;
-            
+            pessoasFinanceiro = null;
+
             Mensagem.sucesso("Pessoa excluída.");
+            
+            if(pessoaSelecionada != lg.getPessoaAutenticada()){
+                return lg.sair();
+            }
         } else {
             Mensagem.atencao("Selecione uma Pessoa.");
         }
+        
+        return null;
     }
 
     public void adicionar() {
-        System.out.println("Método adicionar");
+        Pessoa p = pessoaDAO.autenticarLogin(pessoa.getLogin());
+        
+        if(p == null){
+            pessoa.setLogin(pessoa.getLogin().toLowerCase());
+            pessoaDAO.inserir(pessoa); //Insere no BD
 
-        //Insere no BD
-        pessoaDAO.inserir(pessoa);
-        
-        //Para permitir atualizar os dados no BD
-        pessoas = null;
+            //Para permitir atualizar os dados no BD
+            pessoas = null;
+            pessoasFinanceiro = null;
 
-        //Criar pessoa
-        this.pessoa = new Pessoa();
+            this.pessoa = new Pessoa();
+            Mensagem.sucesso("Pessoa cadastrada com Sucesso.");
+        } else {
+            Mensagem.erro("Login já existente. ");
+        }
+    }
+    
+    public void adicionarFinanceiro(){
+        this.pessoa.setNivelAcesso(NivelAcesso.Financeiro);
+        adicionar();
+    }
+    
+    public String cadastro(){
+        Pessoa p = pessoaDAO.autenticarLogin(pessoa.getLogin());
         
-        Mensagem.sucesso("Pessoa cadastrada.");
-        
+        if(p == null){
+            pessoa.setLogin(pessoa.getLogin().toLowerCase());
+            pessoaDAO.inserir(pessoa);
+            lg.setPessoa(pessoa);
+            return lg.cadastro();
+        } else {
+            Mensagem.erro("Login já existente. ");
+            return null;
+        }
     }
 
     public Pessoa getPessoa() {
@@ -85,10 +116,16 @@ public class PessoaController implements Serializable {
 
     public List<Pessoa> getPessoas() {
         if (pessoas == null) {
-            System.out.println("Buscando as pessoas no DB");
             pessoas = pessoaDAO.buscarTodas();
         }
         return pessoas;
+    }
+    
+    public List<Pessoa> getPessoasFinanceiro() {
+        if (pessoasFinanceiro == null) {
+            pessoas = pessoaDAO.buscarFinanceiro();
+        }
+        return pessoasFinanceiro;
     }
     
     public boolean exibirItemMenu() {

@@ -16,7 +16,9 @@ import java.io.Serializable;
 @Table(name = "pessoa")
 @NamedQueries({
     @NamedQuery(name = "Pessoa.buscarTodas", query = "FROM Pessoa p"),
-    @NamedQuery(name = "Pessoa.autenticar", query = "FROM Pessoa p WHERE p.login = :login AND p.senha = :senha")
+    @NamedQuery(name = "Pessoa.autenticar", query = "FROM Pessoa p WHERE p.login = :login AND p.senha = :senha"),
+    @NamedQuery(name = "Pessoa.buscarFinanceiro", query = "FROM Pessoa p WHERE p.nivelAcesso = :nivelAcesso"),
+    @NamedQuery(name = "Pessoa.buscarLogin", query = "FROM Pessoa p WHERE p.login = :login")
 })
 public class Pessoa implements Serializable {
 

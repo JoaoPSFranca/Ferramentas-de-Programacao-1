@@ -8,7 +8,32 @@
                 xmlns:f="jakarta.faces.core">
 
     <ui:define name="content">
-        <h1>Listagem Financeira</h1>
+        <h:form>
+            <p:growl id="FinanceiroListGrowl" showDetail="true"/>
+
+            <p:dataTable id="FinanceiroListTabela" value="#{pessoaController.pessoasFinanceiro}" 
+                         var="item" selectionMode="single"
+                         selection="#{pessoaController.pessoaSelecionada}"
+                         rowKey="#{item.codigo}"
+                         paginator="true" paginatorPosition="bottom"
+                         rows="5"
+                         rowsPerPageTemplate="2,4,5,{ShowAll|'All'}">
+
+                <p:column headerText="Código">
+                    <h:outputText value="#{item.codigo}" />
+                </p:column>
+
+                <p:column headerText="Nome">
+                    <h:outputText value="#{item.nome}" />
+                </p:column>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Remover"
+                                     update="FinanceiroListTabela growl"
+                                     action="#{pessoaController.remover}" />
+                </f:facet>
+            </p:dataTable>
+        </h:form>
     </ui:define>
 
 </ui:composition>

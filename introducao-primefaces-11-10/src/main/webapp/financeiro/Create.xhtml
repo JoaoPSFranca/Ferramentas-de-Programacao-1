@@ -8,7 +8,33 @@
                 xmlns:f="jakarta.faces.core">
 
     <ui:define name="content">
-        <h1>Cadastro Financeiro</h1>
+        <h:form>
+            <p:growl id="FinanceiroCreateGrowl" showDetail="true"/>
+            
+            <div class="ui-fluid formgrid grid">
+                <div class="field col-12 md:col-3">
+                    <p:outputLabel for="@next" value="Nome"/>
+                    <p:inputText id="FinanceiroCreateNome" value="#{pessoaController.pessoa.nome}" 
+                                 required="true"/>
+                </div>
+                <div class="field col-12 md:col-9"/> 
+                
+                <div class="field col-12 md:col-3">
+                    <p:outputLabel for="@next" value="Login"/>
+                    <p:inputText id="FinanceiroCreateLogin" value="#{pessoaController.pessoa.login}"
+                                 required="true"/>
+                </div>
+                <div class="field col-12 md:col-9"/> 
+                
+                <div class="field col-12 md:col-3">
+                    <p:outputLabel for="@next" value="Senha"/>
+                    <p:password id="FinanceiroCreateSenha" value="#{pessoaController.pessoa.senha}" 
+                                required="true"/>
+                </div>
+            </div>
+
+            <p:commandButton value="Cadastrar" update="@all growl" action="#{pessoaController.adicionarFinanceiro()}" />
+        </h:form>
     </ui:define>
 
 </ui:composition>

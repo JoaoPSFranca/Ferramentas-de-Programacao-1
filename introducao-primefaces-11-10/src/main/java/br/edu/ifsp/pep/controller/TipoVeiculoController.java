@@ -6,6 +6,7 @@ import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Named
@@ -19,7 +20,27 @@ public class TipoVeiculoController implements Serializable {
     }
     
     public List<TipoVeiculo> buscarTiposVeiculos() {
-        return tipoVeiculoDAO.buscarTodos();
+        List<TipoVeiculo> tipos = tipoVeiculoDAO.buscarTodos();
+        
+        System.out.println(tipos);
+        
+        if(tipos.isEmpty()){
+            tipos = new ArrayList<>();
+            
+            TipoVeiculo tp = new TipoVeiculo("Caminhão");
+            tipoVeiculoDAO.inserir(tp);
+            tipos.add(tp);
+            
+            TipoVeiculo tp2 = new TipoVeiculo("Carro");
+            tipoVeiculoDAO.inserir(tp2);
+            tipos.add(tp2);
+            
+            TipoVeiculo tp3 = new TipoVeiculo("Trator");
+            tipoVeiculoDAO.inserir(tp3);
+            tipos.add(tp3);
+        }
+        
+        return tipos;
     }    
 
 }

@@ -9,12 +9,11 @@
 
     <ui:define name="content">
         <h:form>
-
-            <p:dataTable id="tabela" value="#{veiculoController.veiculos}" 
+            <p:dataTable id="VeiculoListVeiculoTabela" value="#{veiculoController.veiculos}" 
                          var="item" selectionMode="single"
                          selection="#{veiculoController.veiculoSelecionado}"
                          rowKey="#{item.codigo}"
-                         paginator="true" paginatorPosition="top"
+                         paginator="true" paginatorPosition="bottom"
                          rows="5"
                          rowsPerPageTemplate="2,4,5,{ShowAll|'All'}">
 
@@ -34,21 +33,20 @@
                     <h:outputText value="#{item.ano}" />
                 </p:column>
 
-                <p:column headerText="Valor Aluguel">
-                    <h:outputText value="#{item.valorAluguel}" />
-                </p:column>
-
                 <f:facet name="footer">
                     <p:commandButton value="Cadastrar"
-                                     update="tabela growl"
-                                     action="#{veiculoController.prepararCadastro}" />
+                                     update="VeiculoListVeiculoTabela growl"
+                                     action="#{veiculoController.prepararCadastro}" 
+                                     style="margin-right: 10px"/>
                     
                     <p:commandButton value="Remover"
-                                     update="tabela growl"
-                                     action="#{veiculoController.remover}" />
+                                     update="VeiculoListVeiculoTabela growl"
+                                     action="#{veiculoController.remover}" 
+                                     style="margin-right: 10px"/>
                     
                     <p:commandButton value="Alterar"
-                                     update="tabela growl"
+                                     update="VeiculoListVeiculoTabela growl"
+                                     action="/veiculo/UpdateVeiculo"
                                       />
                 </f:facet>
             </p:dataTable>            

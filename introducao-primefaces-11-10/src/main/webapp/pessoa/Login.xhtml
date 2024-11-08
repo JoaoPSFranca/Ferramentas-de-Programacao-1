@@ -10,18 +10,24 @@
     <ui:define name="content">
 
         <h:form>
+            <p:growl id="PessoaLoginGrowl" showDetail="true"/>
+            
+            <div class="ui-fluid formgrid grid">
+                <div class="field col-12 md:col-3">
+                    <p:outputLabel for="@next" value="Login"/>
+                    <p:inputText id="PessoaLoginLogin" value="#{loginController.pessoa.login}"
+                                 required="true"/>
+                </div>
+                <div class="field col-12 md:col-9"/> 
+                
+                <div class="field col-12 md:col-3">
+                    <p:outputLabel for="@next" value="Senha"/>
+                    <p:password id="PessoaLoginSenha" value="#{loginController.pessoa.senha}" 
+                                required="true"/>
+                </div>
+            </div>
 
-            <span class="ui-float-label">
-                <p:inputText id="login" value="#{loginController.pessoa.login}" />
-                <p:outputLabel for="@previous" value="Login"/>
-            </span>
-            <br/>
-            <span class="ui-float-label">
-                <p:password id="senha" value="#{loginController.pessoa.senha}" />
-                <p:outputLabel for="@previous" value="Senha"/>
-            </span>
-
-            <p:commandButton value="Acessar" update="@all" action="#{loginController.autenticar()}" />
+            <p:commandButton value="Acessar" update="@all growl" action="#{loginController.autenticar()}" />
 
         </h:form>
         

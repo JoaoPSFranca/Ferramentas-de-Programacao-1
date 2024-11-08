@@ -33,8 +33,8 @@ public class Veiculo {
     @Column(name = "ano", nullable = false)
     private Integer ano;
 
-//    @Column(name = "placa", length = 9, nullable = false)
-//    private String placa;
+    @Column(name = "placa", length = 9, nullable = false)
+    private String placa;
 //
 //    @Enumerated(EnumType.STRING)
 //    @Column(name = "status", length = 10, nullable = false)
@@ -75,13 +75,13 @@ public class Veiculo {
         this.ano = ano;
     }
 
-//    public String getPlaca() {
-//        return placa;
-//    }
-//
-//    public void setPlaca(String placa) {
-//        this.placa = placa;
-//    }
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
 //
 //    public StatusVeiculo getStatus() {
 //        return status;

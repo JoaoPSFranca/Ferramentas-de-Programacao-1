@@ -75,8 +75,6 @@ public class TipoVeiculo implements Serializable {
         return Objects.equals(this.codigo, other.codigo);
     }
     
-    
-
     @Override
     public String toString() {
         return "TipoVeiculo{" + "codigo=" + codigo + ", nome=" + nome + '}';

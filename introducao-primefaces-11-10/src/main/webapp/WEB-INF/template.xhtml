@@ -38,18 +38,25 @@
                                     rendered="true" />
                         
                         <f:facet name="end">
-                            <p:commandButton value="Cadastro" 
+                            <p:commandButton value="Cadastre-se" 
                                              icon="pi pi-fw pi-user-plus" 
                                              action="/pessoa/Cadastro" 
-                                             style="margin-right: 10px;"/>
-                        </f:facet>
-                        
-                        <f:facet name="end">
+                                             style="margin-right: 10px;"
+                                             rendered="#{loginController.pessoaAutenticada == null}"/>
+
                             <p:commandButton value="Login" 
                                              icon="pi pi-fw pi-sign-in" 
-                                             action="/pessoa/Login" />
+                                             action="/pessoa/Login"
+                                             rendered="#{loginController.pessoaAutenticada == null}"/>
+                            
+                            <p:submenu label="Perfil" icon="pi pi-fw pi-user" rendered="#{loginController.pessoaAutenticada != null}">
+                                <p:commandButton value="Logout" icon="pi pi-fw pi-sign-out"
+                                                 styleClass="ui-button-info" 
+                                                 action ="#{loginController.sair()}"
+                                                 update="@all"/>
+                            </p:submenu>
                         </f:facet>
-                    </p:menubar>
+                    </p:menubar>    
                 </h:form>
             </ui:insert>
         </div>
